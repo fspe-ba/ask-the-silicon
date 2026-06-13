@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask The Silicon™</title>
+
+<style>
+body {
+    background: #0a0a0a;
+    color: #00ff66;
+    font-family: Consolas, Monaco, monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid #00ff66;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,255,100,0.3);
+}
+
+h1 {
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    color: #00ff66;
+    border: 1px solid #00ff66;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    background: #00ff66;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.terminal {
+    margin-top: 20px;
+    min-height: 250px;
+    border: 1px dashed #00ff66;
+    padding: 15px;
+    white-space: pre-line;
+}
+
+.footer {
+    margin-top: 25px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.progress {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.achievement {
+    color: yellow;
+    margin-top: 15px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>ASK THE SILICON™</h1>
+
+<div class="subtitle">
+FSPE Post-Silicon Validation v1.0<br>
+"Silicon never lies. It just doesn't explain itself."
+</div>
+
+<input id="question"
+placeholder="Why are you failing?" />
+
+<button onclick="consultSilicon()">
+INTERROGATE SILICON
+</button>
+
+<div class="terminal" id="terminal">
+Waiting for inquiry...
+</div>
+
+<div class="achievement" id="achievement"></div>
+
+<div class="footer">
+Silicon Accuracy: 99.999999%<br>
+Source: FSPE BA Labs
+</div>
+
+</div>
+
+<script>
+
+let questionsAsked = 0;
+
+const normalResponses = [
+"Need More Logs.",
+"Works On Tester 4.",
+"Cannot Reproduce.",
+"Passed Yesterday.",
+"Ask Firmware.",
+"Check Contact Resistance.",
+"Issue Not Seen In Simulation.",
+"Expected Behavior.",
+"Known Issue.\nKnown By Whom: Unknown.",
+"Please Reboot Tester.",
+"Looks Like A Loadboard Issue.",
+"Handler Seems Suspicious.",
+"Try Retesting Again.",
+"Yield Is A State Of Mind.",
+"Correlation Pending.",
+"Awaiting Root Cause."
+];
+
+function consultSilicon() {
+
+const q = document.getElementById("question").value.trim();
+const terminal = document.getElementById("terminal");
+
+questionsAsked++;
+
+terminal.innerHTML =
+"Reading eFuses...\n" +
+"██████████ 100%\n\n" +
+"Consulting Silicon Spirits...\n" +
+"████████░░ 80%\n\n" +
+"Generating Excuse...\n" +
+"██████████ 100%\n";
+
+setTimeout(() => {
+
+let response = "";
+
+if(q.toLowerCase().includes("who owns this bug")) {
+
+response =
+`Performing Ownership Analysis...
+
+RTL: Not Mine
+Firmware: Not Mine
+Validation: Not Mine
+Product Engineering: Not Mine
+
+Final Owner:
+
+YOU`;
+
+}
+else if(q.toLowerCase().includes("site 7")) {
+
+response =
+`Analysis Complete...
+
+Site 7 has chosen violence.`;
+
+}
+else {
+
+let random = Math.random();
+
+if(random < 0.01) {
+
+response =
+`ACTUAL ROOT CAUSE FOUND.
+
+ERROR
+
+Connection Lost.`;
+
+}
+else if(random < 0.02) {
+
+response =
+`You changed the limits.
+
+Don't blame me.`;
+
+}
+else if(random < 0.03) {
+
+response =
+`Yield is acceptable.
+
+Management has left the chat.`;
+
+}
+else {
+
+response =
+normalResponses[
+Math.floor(Math.random()*normalResponses.length)
+];
+
+}
+
+}
+
+terminal.innerHTML =
+`Question:
+${q || "Why are you failing?"}
+
+--------------------------------
+
+Answer:
+
+${response}`;
+
+if(questionsAsked === 10) {
+
+document.getElementById("achievement").innerHTML =
+`🏆 ACHIEVEMENT UNLOCKED
+
+Senior Debug Engineer
+
+✔ Ignored first hypothesis
+✔ Collected unnecessary logs
+✔ Retested device
+✔ Blamed contact issue`;
+
+}
+
+}, 1500);
+
+}
+
+</script>
+
+</body>
+</html>
